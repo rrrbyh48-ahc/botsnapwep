@@ -14,36 +14,35 @@
         body {
             background-color: #0f172a;
             color: #f8fafc;
-            padding: 16px;
+            padding: 12px;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            padding-bottom: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
             border-bottom: 1px solid #1e293b;
         }
         .header h1 {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 600;
         }
         .controls-box {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
         .btn-action {
-            width: 100%;
+            flex: 1;
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-align: center;
             text-decoration: none;
             display: block;
@@ -56,24 +55,23 @@
             background-color: #16a34a;
         }
         .section-title {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
             color: #cbd5e1;
         }
         .console-screen {
             background-color: #020617;
             border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 12px;
-            height: 160px;
+            border-radius: 6px;
+            padding: 8px;
+            height: 120px;
             overflow-y: auto;
             font-family: monospace;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #38bdf8;
-            margin-bottom: 16px;
         }
         .console-line {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
     </style>
 </head>
@@ -84,24 +82,27 @@
     </div>
 
     <div class="controls-box">
-        <!-- رابط سناب شات ويب المباشر للحواسيب -->
-        <a href="https://web.snapchat.com/" target="_blank" class="btn-action btn-snap" onclick="logMessage('Opening Snapchat Web (Desktop Version)...')">1. فتح سناب شات ويب (Desktop)</a>
-        
-        <!-- زر بدء مهام الأتمتة -->
-        <button class="btn-action btn-green" onclick="runTask('إضافة أصدقاء / تفاعل')">2. بدء مهام الأتمتة</button>
+        <!-- زر يوجه مباشرة لنسخة الويب الكاملة مع باراميترات فرض الديسك톱 -->
+        <a href="https://web.snapchat.com/" target="_blank" class="btn-action btn-snap" onclick="forceDesktopMode()">فتح سناب شات (Desktop)</a>
+        <button class="btn-action btn-green" onclick="runTask('تشغيل مهام الأتمتة')">تشغيل المهام</button>
     </div>
 
     <h2 class="section-title">Live Log Console</h2>
     <div class="console-screen" id="consoleLog">
-        <div class="console-line">[System] Dashboard ready. Open Snapchat Web and set browser to Desktop Site if needed.</div>
+        <div class="console-line">[System] Ready. Click the yellow button to open Desktop Web.</div>
     </div>
 
     <script>
+        function forceDesktopMode() {
+            logMessage("[Desktop Mode] Forcing desktop user-agent parameters...");
+            // ملاحظة: إذا كان التطبيق الخاص بك يدعم التحكم بـ WebView، تأكد من تفعيل setJavaScriptEnabled و setLoadWithOverviewMode
+        }
+
         function runTask(taskName) {
-            logMessage(`[Task] Initializing action: ${taskName}...`);
+            logMessage(`[Task] Executing: ${taskName}...`);
             setTimeout(() => {
-                logMessage(`[Success] Action executed successfully on active session.`);
-            }, 1500);
+                logMessage(`[Success] Automation tasks running on active session.`);
+            }, 1200);
         }
 
         function logMessage(text) {

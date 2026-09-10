@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Control Center</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 16px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #1e293b;
+        }
+        .header h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .badge {
+            background-color: #3b82f6;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background-color: #1e293b;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+        }
+        .stat-card h3 {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .section-title {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+        }
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .task-item {
+            background-color: #1e293b;
+            padding: 12px 14px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #334155;
+        }
+        .task-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .task-info p {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        .status {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .status.new { background-color: #0284c7; color: #e0f2fe; }
+        .status.reviewed { background-color: #059669; color: #ecfdf5; }
+        .status.rejected { background-color: #dc2626; color: #fee2e2; }
+        
+        .btn-dispatch {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .btn-dispatch:active {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Automation Center</h1>
+        <span class="badge">Online</span>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Active Workers</h3>
+            <div class="value">8</div>
+        </div>
+        <div class="stat-card">
+            <h3>Recent Failures</h3>
+            <div class="value" style="color: #f87171;">2</div>
+        </div>
+        <div class="stat-card">
+            <h3>Captured Payloads</h3>
+            <div class="value">24</div>
+        </div>
+        <div class="stat-card">
+            <h3>Queue Pending</h3>
+            <div class="value">3</div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Recent Tasks</h2>
+    <div class="task-list">
+        <div class="task-item">
+            <div class="task-info">
+                <h4>Form 8-K Executive Data</h4>
+                <p>34 fields • 2026-09-10</p>
+            </div>
+            <span class="status new">New</span>
+        </div>
+        <div class="task-item">
+            <div class="task-info">
+                <h4>Air Purifier Scraper v4</h4>
+                <p>12 fields • 2026-09-10</p>
+            </div>
+            <span class="status reviewed">Reviewed</span>
+        </div>
+        <div class="task-item">
+            <div class="task-info">
+                <h4>USACE Civil Solicitation</h4>
+                <p>27 fields • 2026-09-10</p>
+            </div>
+            <span class="status rejected">Rejected</span>
+        </div>
+    </div>
+
+    <button class="btn-dispatch" onclick="alert('Triggering immediate automation task...')">Dispatch Immediate Run</button>
+
+</body>
+</html>

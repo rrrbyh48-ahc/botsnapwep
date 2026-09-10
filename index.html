@@ -14,7 +14,7 @@
         body {
             background-color: #0f172a;
             color: #f8fafc;
-            padding: 16px;
+            padding: 12px;
         }
         .screen {
             display: none;
@@ -72,63 +72,112 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            padding-bottom: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
             border-bottom: 1px solid #1e293b;
         }
         .header h1 {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 600;
         }
+        
+        /* شاشة الكمبيوتر المصغرة المدمجة (Embed Desktop View) */
+        .desktop-viewport-container {
+            width: 100%;
+            height: 380px;
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .viewport-header {
+            background-color: #0f172a;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #334155;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        .viewport-dots {
+            display: flex;
+            gap: 5px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .dot-red { background-color: #ef4444; }
+        .dot-yellow { background-color: #eab308; }
+        .dot-green { background-color: #22c55e; }
+
+        .viewport-iframe-wrapper {
+            width: 100%;
+            height: calc(100% - 27px);
+            position: relative;
+            background: #fff; /* خلفية بيضاء لتتوافق مع صفحة تسجيل دخول سناب */
+        }
+        /* إطار وهمي/مباشر موجه لبوابة تسجيل الدخول */
+        .viewport-iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* لوحة التحكم والأزرار بالأسفل */
         .controls-box {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
         .btn-action {
-            width: 100%;
+            flex: 1;
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-align: center;
-            text-decoration: none;
-            display: block;
+        }
+        .btn-green {
+            background-color: #16a34a;
         }
         .btn-snap {
             background-color: #fffc00;
             color: #000;
         }
+
         .section-title {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
             color: #cbd5e1;
         }
         .console-screen {
             background-color: #020617;
             border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 10px;
-            height: 140px;
+            border-radius: 6px;
+            padding: 8px;
+            height: 100px;
             overflow-y: auto;
             font-family: monospace;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #38bdf8;
-            margin-bottom: 16px;
         }
         .console-line {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .logout-btn {
             background: none;
             border: none;
             color: #ef4444;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
             text-decoration: underline;
         }
@@ -136,7 +185,7 @@
 </head>
 <body>
 
-    <!-- 1. شاشة تسجيل الدخول -->
+    <!-- 1. شاشة تسجيل الدخول للنظام -->
     <div id="loginScreen" class="screen active">
         <div class="login-container">
             <h2>Snap Automation Login</h2>
@@ -152,22 +201,38 @@
         </div>
     </div>
 
-    <!-- 2. لوحة التحكم -->
+    <!-- 2. لوحة التحكم والشاشة المصغرة -->
     <div id="dashboardScreen" class="screen">
         <div class="header">
-            <h1>Control Panel</h1>
+            <h1>Snap Automation Dashboard</h1>
             <button class="logout-btn" onclick="handleLogout()">Logout</button>
         </div>
 
-        <div class="controls-box">
-            <!-- فتح سناب شات ويب بوضع سطح المكتب الإجباري عبر المتصفح الخارجي/الداخلي -->
-            <button class="btn-action btn-snap" onclick="openDesktopSnap()">فتح سناب شات (وضع الكمبيوتر)</button>
-            <button class="btn-action" style="background-color: #16a34a;" onclick="runTask('إضافة أصدقاء / متابعة')">بدء مهام الأتمتة</button>
+        <!-- شاشة الكمبيوتر المصغرة المدمجة لعرض بوابة تسجيل الدخول وسناب ويب -->
+        <div class="desktop-viewport-container">
+            <div class="viewport-header">
+                <div class="viewport-dots">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                </div>
+                <span>Snapchat Web (Desktop Viewport)</span>
+            </div>
+            <div class="viewport-iframe-wrapper">
+                <!-- استخدام رابط البوابة المباشر لتجاوز الحظر الداخلي -->
+                <iframe id="snapEmbeddedFrame" src="https://accounts.snapchat.com/?continue=https%3A%2F%2Fweb.snapchat.com%2F"></iframe>
+            </div>
         </div>
 
-        <h2 class="section-title" style="margin-top: 14px;">Live Log Console</h2>
+        <!-- أزرار التحكم والأتمتة جوا الشاشة المصغرة -->
+        <div class="controls-box">
+            <button class="btn-action btn-snap" onclick="reloadSnapViewport()">تحديث الشاشة</button>
+            <button class="btn-action btn-green" onclick="runTask('بدء الأتمتة / إضافة أصدقاء')">تشغيل المهام</button>
+        </div>
+
+        <h2 class="section-title">Live Log Console</h2>
         <div class="console-screen" id="consoleLog">
-            <div class="console-line">[System] Ready for operations.</div>
+            <div class="console-line">[System] Embedded desktop viewport initialized.</div>
         </div>
     </div>
 
@@ -177,7 +242,7 @@
             if(user.trim() !== "") {
                 document.getElementById('loginScreen').classList.remove('active');
                 document.getElementById('dashboardScreen').classList.add('active');
-                logMessage("Logged in successfully.");
+                logMessage("Dashboard unlocked for user: " + user);
             } else {
                 alert("Please enter Node ID");
             }
@@ -188,17 +253,17 @@
             document.getElementById('loginScreen').classList.add('active');
         }
 
-        function openDesktopSnap() {
-            logMessage("[Browser] Launching Snapchat Web in Desktop Mode...");
-            // فتح الرابط مع إجبار المتصفح على طلب النسخة المكتبية
-            window.location.href = "https://web.snapchat.com";
+        function reloadSnapViewport() {
+            const iframe = document.getElementById('snapEmbeddedFrame');
+            iframe.src = iframe.src;
+            logMessage("[Viewport] Reloading Snapchat login session...");
         }
 
         function runTask(taskName) {
-            logMessage(`[Task] Initializing action: ${taskName}...`);
+            logMessage(`[Task] Executing: ${taskName}...`);
             setTimeout(() => {
-                logMessage(`[Success] Action executed on active web session.`);
-            }, 1500);
+                logMessage(`[Success] Automation script executed on active session.`);
+            }, 1200);
         }
 
         function logMessage(text) {

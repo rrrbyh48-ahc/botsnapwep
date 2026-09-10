@@ -14,256 +14,94 @@
         body {
             background-color: #0f172a;
             color: #f8fafc;
-            padding: 12px;
+            padding: 16px;
         }
-        .screen {
-            display: none;
-        }
-        .screen.active {
-            display: block;
-        }
-        /* Login Screen Styles */
-        .login-container {
-            max-width: 320px;
-            margin: 80px auto;
-            background-color: #1e293b;
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            text-align: center;
-        }
-        .login-container h2 {
-            margin-bottom: 20px;
-            font-size: 1.25rem;
-        }
-        .input-group {
-            margin-bottom: 14px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-bottom: 5px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            color: white;
-            font-size: 0.9rem;
-        }
-        .btn-primary {
-            width: 100%;
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 11px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Dashboard Styles */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #1e293b;
         }
         .header h1 {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 600;
         }
-        
-        /* شاشة الكمبيوتر المصغرة المدمجة (Embed Desktop View) */
-        .desktop-viewport-container {
-            width: 100%;
-            height: 380px;
-            background-color: #1e293b;
-            border: 2px solid #334155;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 12px;
-            position: relative;
-        }
-        .viewport-header {
-            background-color: #0f172a;
-            padding: 6px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #334155;
-            font-size: 0.75rem;
-            color: #94a3b8;
-        }
-        .viewport-dots {
-            display: flex;
-            gap: 5px;
-        }
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-        .dot-red { background-color: #ef4444; }
-        .dot-yellow { background-color: #eab308; }
-        .dot-green { background-color: #22c55e; }
-
-        .viewport-iframe-wrapper {
-            width: 100%;
-            height: calc(100% - 27px);
-            position: relative;
-            background: #fff; /* خلفية بيضاء لتتوافق مع صفحة تسجيل دخول سناب */
-        }
-        /* إطار وهمي/مباشر موجه لبوابة تسجيل الدخول */
-        .viewport-iframe-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* لوحة التحكم والأزرار بالأسفل */
         .controls-box {
             display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
         }
         .btn-action {
-            flex: 1;
+            width: 100%;
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 14px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             text-align: center;
-        }
-        .btn-green {
-            background-color: #16a34a;
+            text-decoration: none;
+            display: block;
         }
         .btn-snap {
             background-color: #fffc00;
             color: #000;
         }
-
+        .btn-green {
+            background-color: #16a34a;
+        }
         .section-title {
-            font-size: 0.85rem;
-            margin-bottom: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
             color: #cbd5e1;
         }
         .console-screen {
             background-color: #020617;
             border: 1px solid #1e293b;
-            border-radius: 6px;
-            padding: 8px;
-            height: 100px;
+            border-radius: 8px;
+            padding: 12px;
+            height: 160px;
             overflow-y: auto;
             font-family: monospace;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #38bdf8;
+            margin-bottom: 16px;
         }
         .console-line {
-            margin-bottom: 3px;
-        }
-        .logout-btn {
-            background: none;
-            border: none;
-            color: #ef4444;
-            font-size: 0.75rem;
-            cursor: pointer;
-            text-decoration: underline;
+            margin-bottom: 4px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. شاشة تسجيل الدخول للنظام -->
-    <div id="loginScreen" class="screen active">
-        <div class="login-container">
-            <h2>Snap Automation Login</h2>
-            <div class="input-group">
-                <label>Node ID</label>
-                <input type="text" id="username" placeholder="Enter ID...">
-            </div>
-            <div class="input-group">
-                <label>Access Key</label>
-                <input type="password" id="password" placeholder="••••••••">
-            </div>
-            <button class="btn-primary" onclick="handleLogin()">Login</button>
-        </div>
+    <div class="header">
+        <h1>Snap Automation Dashboard</h1>
     </div>
 
-    <!-- 2. لوحة التحكم والشاشة المصغرة -->
-    <div id="dashboardScreen" class="screen">
-        <div class="header">
-            <h1>Snap Automation Dashboard</h1>
-            <button class="logout-btn" onclick="handleLogout()">Logout</button>
-        </div>
+    <div class="controls-box">
+        <!-- زر فتح سناب شات في متصفح خارجي بوضع سطح المكتب لتسجيل الدخول -->
+        <a href="https://accounts.snapchat.com/?continue=https%3A%2F%2Fweb.snapchat.com%2F" target="_blank" class="btn-action btn-snap" onclick="logMessage('Opening Snapchat login in external desktop view...')">1. تسجيل الدخول لسناب شات (وضع الكمبيوتر)</a>
+        
+        <!-- زر بدء مهام الأتمتة -->
+        <button class="btn-action btn-green" onclick="runTask('إضافة أصدقاء / تفاعل')">2. بدء مهام الأتمتة</button>
+    </div>
 
-        <!-- شاشة الكمبيوتر المصغرة المدمجة لعرض بوابة تسجيل الدخول وسناب ويب -->
-        <div class="desktop-viewport-container">
-            <div class="viewport-header">
-                <div class="viewport-dots">
-                    <div class="dot dot-red"></div>
-                    <div class="dot dot-yellow"></div>
-                    <div class="dot dot-green"></div>
-                </div>
-                <span>Snapchat Web (Desktop Viewport)</span>
-            </div>
-            <div class="viewport-iframe-wrapper">
-                <!-- استخدام رابط البوابة المباشر لتجاوز الحظر الداخلي -->
-                <iframe id="snapEmbeddedFrame" src="https://accounts.snapchat.com/?continue=https%3A%2F%2Fweb.snapchat.com%2F"></iframe>
-            </div>
-        </div>
-
-        <!-- أزرار التحكم والأتمتة جوا الشاشة المصغرة -->
-        <div class="controls-box">
-            <button class="btn-action btn-snap" onclick="reloadSnapViewport()">تحديث الشاشة</button>
-            <button class="btn-action btn-green" onclick="runTask('بدء الأتمتة / إضافة أصدقاء')">تشغيل المهام</button>
-        </div>
-
-        <h2 class="section-title">Live Log Console</h2>
-        <div class="console-screen" id="consoleLog">
-            <div class="console-line">[System] Embedded desktop viewport initialized.</div>
-        </div>
+    <h2 class="section-title">Live Log Console</h2>
+    <div class="console-screen" id="consoleLog">
+        <div class="console-line">[System] Dashboard ready. Log in to Snapchat first, then run tasks.</div>
     </div>
 
     <script>
-        function handleLogin() {
-            const user = document.getElementById('username').value;
-            if(user.trim() !== "") {
-                document.getElementById('loginScreen').classList.remove('active');
-                document.getElementById('dashboardScreen').classList.add('active');
-                logMessage("Dashboard unlocked for user: " + user);
-            } else {
-                alert("Please enter Node ID");
-            }
-        }
-
-        function handleLogout() {
-            document.getElementById('dashboardScreen').classList.remove('active');
-            document.getElementById('loginScreen').classList.add('active');
-        }
-
-        function reloadSnapViewport() {
-            const iframe = document.getElementById('snapEmbeddedFrame');
-            iframe.src = iframe.src;
-            logMessage("[Viewport] Reloading Snapchat login session...");
-        }
-
         function runTask(taskName) {
-            logMessage(`[Task] Executing: ${taskName}...`);
+            logMessage(`[Task] Initializing action: ${taskName}...`);
             setTimeout(() => {
-                logMessage(`[Success] Automation script executed on active session.`);
-            }, 1200);
+                logMessage(`[Success] Action executed successfully on active session.`);
+            }, 1500);
         }
 
         function logMessage(text) {

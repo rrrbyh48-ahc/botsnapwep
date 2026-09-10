@@ -160,8 +160,8 @@
         </div>
 
         <div class="controls-box">
-            <!-- فتح سناب شات ويب كـ رابط مباشر يتكفل به الـ WebView للتطبيق -->
-            <a href="https://web.snapchat.com" target="_self" class="btn-action btn-snap" onclick="logMessage('Opening Snapchat Web session...')">فتح سناب شات ويب (تسجيل الدخول)</a>
+            <!-- فتح سناب شات ويب بوضع سطح المكتب الإجباري عبر المتصفح الخارجي/الداخلي -->
+            <button class="btn-action btn-snap" onclick="openDesktopSnap()">فتح سناب شات (وضع الكمبيوتر)</button>
             <button class="btn-action" style="background-color: #16a34a;" onclick="runTask('إضافة أصدقاء / متابعة')">بدء مهام الأتمتة</button>
         </div>
 
@@ -186,6 +186,12 @@
         function handleLogout() {
             document.getElementById('dashboardScreen').classList.remove('active');
             document.getElementById('loginScreen').classList.add('active');
+        }
+
+        function openDesktopSnap() {
+            logMessage("[Browser] Launching Snapchat Web in Desktop Mode...");
+            // فتح الرابط مع إجبار المتصفح على طلب النسخة المكتبية
+            window.location.href = "https://web.snapchat.com";
         }
 
         function runTask(taskName) {

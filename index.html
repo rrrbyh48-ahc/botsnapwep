@@ -2,8 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <!-- فرض عرض الشاشة كحاسوب مكتبي 1280 بكسل لمنع تفعيل وضع الموبايل -->
-    <meta name="viewport" content="width=1280, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snap Automation Center</title>
     <style>
         * {
@@ -12,72 +11,62 @@
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-        body, html {
-            width: 100%;
-            height: 100%;
+        body {
             background-color: #0f172a;
             color: #f8fafc;
-            overflow: hidden;
+            padding: 16px;
         }
-        .app-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #1e293b;
         }
-        .top-bar {
-            background: #1e293b;
-            padding: 8px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #334155;
-            z-index: 10;
-        }
-        .top-bar h1 {
-            font-size: 0.95rem;
+        .header h1 {
+            font-size: 1.2rem;
             font-weight: 600;
         }
-        .btn-reload {
-            background: #0284c7;
-            color: white;
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .btn-action {
+            width: 100%;
+            background-color: #fffc00;
+            color: #000;
             border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 700;
             cursor: pointer;
-            font-size: 0.8rem;
-        }
-        /* جعل الـ iframe يملأ الشاشة وكأنه متصفح كمبيوتر كامل */
-        .web-frame-container {
-            flex: 1;
-            width: 100%;
-            background: #fff;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 4px 12px rgba(255, 252, 0, 0.2);
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <div class="top-bar">
-            <h1>Snapplss - Desktop View</h1>
-            <button class="btn-reload" onclick="reloadSnap()">تحديث الشاشة</button>
-        </div>
-        
-        <div class="web-frame-container">
-            <!-- استخدام رابط الويب المباشر داخل اطار موسع -->
-            <iframe id="snapFrame" src="https://web.snapchat.com/" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"></iframe>
-        </div>
+    <div class="header">
+        <h1>Snapplss Automation</h1>
     </div>
 
-    <script>
-        function reloadSnap() {
-            const frame = document.getElementById('snapFrame');
-            frame.src = frame.src;
-        }
-    </script>
+    <div class="card">
+        <p>لتشغيل لوحة التحكم وأدوات الأتمتة بصيغة سطح المكتب الحقيقية بدون قيود، اضغط على الزر أدناه:</p>
+        <!-- استخدام رابط مباشر مع استهداف المتصفح -->
+        <a href="https://web.snapchat.com/" target="_blank" class="btn-action">فتح سناب شات ويب (Desktop)</a>
+    </div>
+
 </body>
 </html>
